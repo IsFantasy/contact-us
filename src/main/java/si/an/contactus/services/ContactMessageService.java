@@ -19,7 +19,6 @@ public class ContactMessageService {
 
     public ContactMessage saveMessage(ContactMessage contactMessage) {
         ContactMessage savedMessage = contactMessageRepository.save(contactMessage);
-
         sendContactEmail(savedMessage);
 
         return savedMessage;
@@ -27,28 +26,16 @@ public class ContactMessageService {
 
     private void sendContactEmail(ContactMessage contactMessage) {
         SimpleMailMessage mailMessage = new SimpleMailMessage();
-        String contactEmail = "contacto@tuempresa.com";
+        String contactEmail = "antoniopaiva2608@gmail.com";
 
         mailMessage.setTo(contactEmail);
-        mailMessage.setSubject("Nuevo mensaje de contacto recibido");
-        mailMessage.setText("Has recibido un nuevo mensaje de contacto:\n\n" +
-                            "Nombre: " + contactMessage.getName() + "\n" +
-                            "Email: " + contactMessage.getEmail() + "\n" +
-                            "Mensaje: " + contactMessage.getMessage() + "\n" +
-                            "Enviado en: " + contactMessage.getSentAt());
+        mailMessage.setSubject("New contact message received");
+        mailMessage.setText("You have received a new contact message:\n\n" +
+                            "Name: " + contactMessage.getName() + "\n" +
+                            "Mail: " + contactMessage.getEmail() + "\n" +
+                            "Message: " + contactMessage.getMessage() + "\n" +
+                            "Sent in: " + contactMessage.getSentAt());
 
         mailSender.send(mailMessage);
-    }
-
-    public List<ContactMessage> getAllMessages() {
-        return contactMessageRepository.findAll();
-    }
-
-    public ContactMessage getMessageById(Long id) {
-        return contactMessageRepository.findById(id).orElse(null);
-    }
-
-    public void deleteMessage(Long id) {
-        contactMessageRepository.deleteById(id);
     }
 }
