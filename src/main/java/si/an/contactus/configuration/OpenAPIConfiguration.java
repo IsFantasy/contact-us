@@ -15,7 +15,7 @@ public class OpenAPIConfiguration {
    @Bean
    public OpenAPI defineOpenApi() {
        Server server = new Server();
-       server.setUrl("http://localhost:8080");
+       server.setUrl("https://api-contact-us.netlify.app");
        server.setDescription("Development");
 
        Contact myContact = new Contact();
