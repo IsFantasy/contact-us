@@ -7,8 +7,6 @@ import org.springframework.stereotype.Service;
 import si.an.contactus.model.ContactMessage;
 import si.an.contactus.repository.ContactMessageRepository;
 
-import java.util.List;
-
 @Service
 public class ContactMessageService {
 
@@ -26,7 +24,7 @@ public class ContactMessageService {
 
     private void sendContactEmail(ContactMessage contactMessage) {
         SimpleMailMessage mailMessage = new SimpleMailMessage();
-        String contactEmail = "antoniopaiva2608@gmail.com";
+        String contactEmail = "brando2903@gmail.com";
 
         mailMessage.setTo(contactEmail);
         mailMessage.setSubject("New contact message received");
