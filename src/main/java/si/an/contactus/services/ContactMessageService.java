@@ -1,7 +1,6 @@
 package si.an.contactus.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
@@ -16,20 +15,16 @@ public class ContactMessageService {
     @Autowired
     private JavaMailSender mailSender;
 
-    @Value("${MAIL_CONTACT}")
-    private String contactEmail;
-
-    public ContactMessage saveMessage(ContactMessage contactMessage) {
+    public void saveMessage(ContactMessage contactMessage) {
         ContactMessage savedMessage = contactMessageRepository.save(contactMessage);
         sendContactEmail(savedMessage);
 
-        return savedMessage;
     }
 
     private void sendContactEmail(ContactMessage contactMessage) {
         SimpleMailMessage mailMessage = new SimpleMailMessage();
 
-        mailMessage.setTo(contactEmail);
+        mailMessage.setTo("antonipaiva2608@gmail.com");
         mailMessage.setSubject("New contact message received");
         mailMessage.setText("You have received a new contact message:\n\n" +
                             "Name: " + contactMessage.getName() + "\n" +
